@@ -17,9 +17,15 @@ app.get('/events/:uuid', (req, res) => {
     'Cache-Control': 'no-cache',
     'Connection': 'keep-alive',
   });
-  res.write('\n');
 
-  sseDemo(req, res);
+  setTimeout(() => {
+    res.write(`data: 75 seconds passed\n\n`);
+    res.end();
+  }, 30000);
+
+  req.on('close', () => {
+    console.log('closed')
+  });
 });
 
 app.listen(port, () => {
@@ -27,14 +33,14 @@ app.listen(port, () => {
 });
 
 
-async function sseDemo(req, res) {
-  let messageId = 0;
+// async function sseDemo(req, res) {
+//   let messageId = 0;
 
-  setTimeout(() => {
-    res.write(`id: 2\n`)
-    res.write(`data: 75 seconds passed\n\n`);
-    res.end();
-  }, 75000);
+//   setTimeout(() => {
+//     res.write(`id: 2\n`)
+//     res.write(`data: 75 seconds passed\n\n`);
+//     res.end();
+//   }, 75000);
 
   // const intervalId = setTimeout(() => {
   //   // if (messageId > 10) {
@@ -52,4 +58,4 @@ async function sseDemo(req, res) {
   //   console.log('closed')
   //     clearInterval(intervalId);
   // });
-}
+// }
