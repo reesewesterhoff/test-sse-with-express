@@ -19,9 +19,9 @@ app.get('/events/:uuid', (req, res) => {
   });
 
   setTimeout(() => {
-    res.write(`data: 75 seconds passed\n\n`);
+    res.write(`data: 25 seconds passed\n\n`);
     res.end();
-  }, 30000);
+  }, 25000);
 
   req.on('close', () => {
     console.log('closed')
