@@ -32,9 +32,9 @@ async function sseDemo(req, res) {
 
   setTimeout(() => {
     res.write(`id: 2\n`)
-    res.write(`data: 37 seconds passed\n\n`);
+    res.write(`data: 75 seconds passed\n\n`);
     res.end();
-  }, 37000);
+  }, 75000);
 
   // const intervalId = setTimeout(() => {
   //   // if (messageId > 10) {
