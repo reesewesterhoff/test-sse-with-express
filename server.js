@@ -1,6 +1,9 @@
 const express = require('express');
 const app = express();
 const port = process.env.PORT || 3000;
+let obj = {};
+let number = 0;
+let globalRandomNumber = 0;
 
 app.use(express.static('public'));
 
@@ -11,25 +14,16 @@ app.get('/', (req, res) => {
 
 app.get('/events/:uuid', async (req, res) => {
   console.log('Events hit', req.params.uuid);
-  let randomNumber = req.params.uuid
+  globalRandomNumber = req.params.uuid
   // SSE Setup
   res.writeHead(200, {
     'Content-Type': 'text/event-stream',
     'Cache-Control': 'no-cache',
     'Connection': 'keep-alive',
   });
-
-  let obj = {};
-  let number = 0;
+  
   const startTime = new Date().getTime();
-
-  for (let i = 0; i < 100000; i++) {
-    obj['i' + i] = 'i' + i;
-    for (let j = 0; j < 900; j++) {
-      obj['j' + j] = 'j' + j;
-      number = i * (j - 1) * randomNumber - 28876 / 3
-    }
-  }
+  await doProcess();
 
   res.write(`data: ${new Date().getTime() - startTime}ms has elapsed\n`);
   res.write(`data: Here is a large number that was calculated by node: ${number}\n\n`)
@@ -49,6 +43,15 @@ app.listen(port, () => {
   console.log('App listening on port:', port);
 });
 
+function doProcess() {
+  for (let i = 0; i < 100000; i++) {
+    obj['i' + i] = 'i' + i;
+    for (let j = 0; j < 900; j++) {
+      obj['j' + j] = 'j' + j;
+      number = i * (j - 1) * globalRandomNumber - 28876 / 3
+    }
+  }
+}
 
 // async function sseDemo(req, res) {
 //   let messageId = 0;
