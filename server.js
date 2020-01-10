@@ -9,7 +9,7 @@ app.get('/', (req, res) => {
   res.send('Hello world!');
 });
 
-app.get('/events/:uuid', (req, res) => {
+app.get('/events/:uuid', async (req, res) => {
   console.log('Events hit', req.params.uuid);
   let randomNumber = req.params.uuid
   // SSE Setup
