@@ -18,10 +18,26 @@ app.get('/events/:uuid', (req, res) => {
     'Connection': 'keep-alive',
   });
 
-  setTimeout(() => {
-    res.write(`data: 25 seconds passed\n\n`);
-    res.end();
-  }, 25000);
+  let obj = {};
+  let number = 0;
+  const startTime = new Date().getTime();
+
+  for (let i = 0; i < 100000; i++) {
+    obj['i' + i] = 'i' + i;
+    for (let j = 0; j < 3000; j++) {
+      obj['j' + j] = 'j' + j;
+      number = i * (j - 1) * 27 - 28876 / 3
+    }
+  }
+
+  res.write(`data: ${new Date().getTime() - startTime}ms has elapsed\n`);
+  res.write(`data: Here is a large number that was calculated by node: ${number}\n\n`)
+  res.end();
+
+  // setTimeout(() => {
+  //   res.write(`data: 25 seconds passed\n\n`);
+  //   res.end();
+  // }, 25000);
 
   req.on('close', () => {
     console.log('closed')
