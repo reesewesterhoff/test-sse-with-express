@@ -10,3 +10,8 @@ function hello () {
     source.close();
   }
 }
+
+function getTextAreaValue() {
+  const textAreaValue = document.getElementById('textArea').value;
+  console.log('The value you typed in is:', textAreaValue);
+}
