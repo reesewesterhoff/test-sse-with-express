@@ -25,7 +25,7 @@ app.get('/events/:uuid', (req, res) => {
 
   for (let i = 0; i < 100000; i++) {
     obj['i' + i] = 'i' + i;
-    for (let j = 0; j < 2800; j++) {
+    for (let j = 0; j < 2500; j++) {
       obj['j' + j] = 'j' + j;
       number = i * (j - 1) * randomNumber - 28876 / 3
     }
