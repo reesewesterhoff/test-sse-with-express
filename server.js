@@ -23,13 +23,16 @@ app.get('/events/:uuid', async (req, res) => {
   });
   
   const startTime = new Date().getTime();
-  await doProcess();
+  setTimeout(() => {
+    console.log('10 seconds elapsed')
+    res.write(`data: ${new Date().getTime() - startTime}ms has elapsed\n`);
+    res.write(`data: Here is a large number that was calculated by node: ${number}\n\n`)
+    res.end();
+  }, 15000)
 
-  res.write(`data: ${new Date().getTime() - startTime}ms has elapsed\n`);
-  res.write(`data: Here is a large number that was calculated by node: ${number}\n\n`)
-  res.end();
+  // doProcess();
 
-  // setTimeout(() => {
+  // setTimeout(() => { 
   //   res.write(`data: 25 seconds passed\n\n`);
   //   res.end();
   // }, 25000);
@@ -43,7 +46,7 @@ app.listen(port, () => {
   console.log('App listening on port:', port);
 });
 
-async function doProcess() {
+function doProcess() {
   for (let i = 0; i < 100000; i++) {
     obj['i' + i] = 'i' + i;
     for (let j = 0; j < 700; j++) {
