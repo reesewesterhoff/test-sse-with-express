@@ -11,6 +11,7 @@ app.get('/', (req, res) => {
 
 app.get('/events/:uuid', (req, res) => {
   console.log('Events hit', req.params.uuid);
+  let randomNumber = req.params.uuid
   // SSE Setup
   res.writeHead(200, {
     'Content-Type': 'text/event-stream',
@@ -24,9 +25,9 @@ app.get('/events/:uuid', (req, res) => {
 
   for (let i = 0; i < 100000; i++) {
     obj['i' + i] = 'i' + i;
-    for (let j = 0; j < 3000; j++) {
+    for (let j = 0; j < 2800; j++) {
       obj['j' + j] = 'j' + j;
-      number = i * (j - 1) * 27 - 28876 / 3
+      number = i * (j - 1) * randomNumber - 28876 / 3
     }
   }
 

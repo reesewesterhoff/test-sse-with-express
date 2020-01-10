@@ -1,7 +1,7 @@
 console.log('JS loaded!');
 
-function hello (uuid) {
-  const uuidParam = uuid;
+function hello () {
+  const uuidParam = Math.floor((Math.random() * 100) + 1);
   console.log('hello');
   let source = new EventSource(`events/${uuidParam}`);
 
