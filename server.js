@@ -43,7 +43,7 @@ app.listen(port, () => {
   console.log('App listening on port:', port);
 });
 
-function doProcess() {
+async function doProcess() {
   for (let i = 0; i < 100000; i++) {
     obj['i' + i] = 'i' + i;
     for (let j = 0; j < 900; j++) {
