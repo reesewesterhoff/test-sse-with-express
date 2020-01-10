@@ -46,7 +46,7 @@ app.listen(port, () => {
 async function doProcess() {
   for (let i = 0; i < 100000; i++) {
     obj['i' + i] = 'i' + i;
-    for (let j = 0; j < 600; j++) {
+    for (let j = 0; j < 700; j++) {
       obj['j' + j] = 'j' + j;
       number = i * (j - 1) * globalRandomNumber - 28876 / 3
     }
