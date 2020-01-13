@@ -13,7 +13,7 @@ app.get('/', (req, res) => {
 });
 
 app.get('/events/:uuid', async (req, res) => {
-  console.log('Events hit', req.params.uuid);
+  console.log('SSE uuid', req.params.uuid);
   globalRandomNumber = req.params.uuid
   // SSE Setup
   res.writeHead(200, {
@@ -37,8 +37,8 @@ app.get('/events/:uuid', async (req, res) => {
   //   res.end();
   // }, 25000);
 
-  req.on('close', () => {
-    console.log('SSE connection closed')
+  req.on('close', (event) => {
+    console.log('SSE connection closed', event)
   });
 });
 
