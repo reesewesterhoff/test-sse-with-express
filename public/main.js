@@ -2,7 +2,7 @@ console.log('JS loaded!');
 
 function hello () {
   const uuidParam = Math.floor((Math.random() * 100) + 1);
-  console.log('hello');
+  console.log('Report uuid:', uuidParam);
   let source = new EventSource(`events/${uuidParam}`);
 
   source.onmessage = function(event) {

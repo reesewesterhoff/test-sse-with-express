@@ -28,7 +28,7 @@ app.get('/events/:uuid', async (req, res) => {
     res.write(`data: ${new Date().getTime() - startTime}ms has elapsed\n`);
     res.write(`data: Here is a large number that was calculated by node: ${number}\n\n`)
     res.end();
-  }, 15000)
+  }, 25000)
 
   // doProcess();
 
